@@ -1,12 +1,7 @@
 [versions]
 # Kotlin / Android
-kotlin = "2.4.10"
-# Since AGP 9.0, 'com.android.application' / 'com.android.library' can no
-# longer be combined with 'org.jetbrains.kotlin.multiplatform' in the SAME
-# module. Instead of downgrading AGP or using compatibility flags, this
-# project splits modules accordingly (see app-component/app-android,
-# app-component/app-desktop and library-component/library).
-androidGradle = "9.4.0"
+kotlin = "2.2.10"
+androidGradle = "9.3.1"
 
 # Dependency Analysis Gradle Plugin (DAGP)
 # https://github.com/autonomousapps/dependency-analysis-gradle-plugin
@@ -18,19 +13,16 @@ androidMinSdk = "24"
 androidTargetSdk = "35"
 
 # Libraries used by the "app" component
-androidxCoreKtx = "1.13.1"
-androidxAppcompat = "1.7.0"
+kotlinxCoroutinesAndroid = "1.6.4"
 
 [libraries]
-androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+library = { module = "com.example.dagp:library" }
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 androidApplication = { id = "com.android.application", version.ref = "androidGradle" }
-# Dedicated AGP 9.x plugin for Kotlin Multiplatform library modules that need
-# an Android target; replaces 'com.android.library' + 'kotlin.multiplatform'.
 androidKmpLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradle" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 

@@ -1,4 +1,5 @@
 plugins {
+    // Applied without a version: see ":library" build script for why.
     id("org.jetbrains.kotlin.multiplatform")
     alias(libs.plugins.androidKmpLibrary)
     alias(libs.plugins.dependencyAnalysis)
@@ -11,7 +12,7 @@ kotlin {
     jvmToolchain(21)
 
     android {
-        namespace = "com.example.dagp.library"
+        namespace = "com.example.dagp.library2"
         compileSdk = libs.versions.androidCompileSdk.get().toInt()
         minSdk = libs.versions.androidMinSdk.get().toInt()
 
@@ -23,9 +24,9 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
-        getByName("commonMain").dependencies {
-            api(project(":library2"))
-        }
+        getByName("commonMain")
+        getByName("androidMain")
+        getByName("desktopMain")
     }
 }
 

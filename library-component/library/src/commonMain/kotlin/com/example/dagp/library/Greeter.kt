@@ -1,12 +1,8 @@
 package com.example.dagp.library
 
-/**
- * Platform-specific implementation, provided per Kotlin Multiplatform target
- * (see Platform.android.kt and Platform.desktop.kt).
- */
-expect fun platformName(): String
+import com.example.dagp.library2.GreeterModel
 
-class Greeter {
-    fun greet(): String = "Hello from ${platformName()}!"
+open class Greeter {
+    open fun greet(model: GreeterModel): String = "Hello good $model!"
 }
 
